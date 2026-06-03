@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+**/.DS_Store
+
+# Git internals
+**/.git/
+
+# Editor / tool configs
+.obsidian/
+.claude/
+
+# Lock files
+.~lock.*
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+
+# Environment files (never let Claude read these)
+.env
+.env.local
+.env.*
+
+# Add folders you don't want Claude to read:
+# my-private-folder/
+# archive/
