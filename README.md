@@ -1,6 +1,6 @@
 ![Big Brain Operating System — the AI brain for your work](docs/banner.png)
 
-# Big Brain
+# Big Brain OS
 
 ### A personal brain for your work
 

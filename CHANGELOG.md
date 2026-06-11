@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 - 2026-06-11
+- Setup fixes: clone URL now points to this repo (was the archived v1 repo); new "Wire the skills" step so Claude Code discovers `skills/` via a `.claude/skills` symlink; memory setup now symlinks `memory/` into the auto-load path instead of copying it (single source of truth for briefing and debrief).
+- Root `CLAUDE.md`: fallback rule so skill triggers work even before the symlink is in place.
+- `project_example.md` aligned to the sections defined in `project_template.md` (Context, Key People, Next action, Status Log).
+- README title aligned to the product name (Big Brain OS).
+
 ## 1.1 - 2026-06-11
 - Self-improving skills: every native skill carries a `## Self-improvement` footer that logs friction to `skills/_improvements/friction-log.md` (protocol in `capture.md`); new `skill-improve` meta-skill turns logged friction into approvable diffs.
 - Computed salience: optional deterministic formula (recency + deadline proximity + status weight + pinned − decay) documented in `docs/ADVANCED.md`, with the `pinned` and `evergreen` fields.

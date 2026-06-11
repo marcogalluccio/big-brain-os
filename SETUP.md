@@ -7,7 +7,7 @@ This is the technical setup for Big Brain: clone the repo, install the Superpowe
 ## Step 1: Clone the repo
 
 ```bash
-git clone https://github.com/marcogalluccio/big-brain.git my-brain
+git clone https://github.com/marcogalluccio/big-brain-os.git my-brain
 cd my-brain
 ```
 
@@ -52,31 +52,48 @@ Then edit the `CLAUDE.md` and `Context.md` inside each domain folder. Delete any
 
 ---
 
-## Step 5: Set up the memory system
+## Step 5: Wire the skills
 
-The `memory/` folder in this repo contains templates. In real use, memory lives where Claude Code auto-loads it:
+Claude Code discovers project skills in `.claude/skills/`, while this repo keeps them versioned in `skills/`. Link the two once:
+
+```bash
+# Run from the repo root (macOS / Linux)
+mkdir -p .claude
+ln -s ../skills .claude/skills
+```
+
+On Windows, create a junction instead, from `cmd` in the repo folder: `mklink /J .claude\skills skills`.
+
+`.claude/` is gitignored, so the link stays local to your machine. As a safety net, the root `CLAUDE.md` also tells the agent to read `skills/<name>/SKILL.md` directly whenever you use a trigger phrase.
+
+---
+
+## Step 6: Set up the memory system
+
+Claude Code auto-loads memory from a per-project folder under `~/.claude`:
 
 ```
 ~/.claude/projects/[your-workspace-path]/memory/
 ```
 
-Claude Code reads `MEMORY.md` from this path when you open your workspace. The path is your workspace's absolute path with slashes turned into dashes.
-
-To set it up:
+The path is your workspace's absolute path with slashes turned into dashes. Point it at the `memory/` folder in this repo with a symlink, so there is a single source of truth: the skills update `memory/`, and Claude Code auto-loads those same files.
 
 ```bash
-# Replace [your-workspace-path] with your actual path (dashes replace slashes).
-# Example: ~/Desktop/my-brain  ->  -Users-yourname-Desktop-my-brain
-MEMORY_PATH="$HOME/.claude/projects/-Users-$(whoami)-Desktop-my-brain/memory"
-mkdir -p "$MEMORY_PATH"
-cp memory/*.md "$MEMORY_PATH/"
+# Run from the repo root (macOS / Linux)
+PROJECT_DIR="$HOME/.claude/projects/$(pwd | tr '/' '-')"
+mkdir -p "$PROJECT_DIR"
+ln -s "$(pwd)/memory" "$PROJECT_DIR/memory"
 ```
 
-Then open `MEMORY.md` in that folder and clear out the example entries. Keep the headers, start fresh.
+On Windows, use a junction (`mklink /J`) the same way as in Step 5.
+
+If a `memory` folder already exists at that path, move anything you want to keep into the repo's `memory/` and delete it before creating the symlink.
+
+Then open `memory/MEMORY.md` and clear out the example entries. Keep the headers, start fresh.
 
 ---
 
-## Step 6: Run your first session
+## Step 7: Run your first session
 
 Open your workspace in Claude Code and type:
 

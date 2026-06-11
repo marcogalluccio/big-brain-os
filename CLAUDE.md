@@ -44,6 +44,14 @@ Load on demand (only when the task requires it):
 - `Workflows.md` — for multi-domain processes and pipelines.
 - Domain `Context.md` files — when working deep inside a specific domain.
 
+### Skills
+
+Skills live in `skills/`, one folder per skill with a `SKILL.md` (instructions plus trigger
+phrases). Setup wires them into Claude Code's discovery path via a `.claude/skills` symlink
+(see `SETUP.md`, Step 5). Fallback: if the user says a skill trigger (like "briefing",
+"debrief", "preview") and the skill has not loaded automatically, read the matching
+`skills/<name>/SKILL.md` and follow it.
+
 ## Structure
 
 - `About Me - Context.md` — personal professional profile: role, style, expertise, goals.
