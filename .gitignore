@@ -28,3 +28,6 @@ daily-log/*.md
 
 # Confidential per-domain raw materials (e.g. client NDA files) never leave your machine
 domains/**/raw/
+
+# ...but the log conventions ship with the template
+!daily-log/CLAUDE.md

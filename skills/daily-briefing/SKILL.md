@@ -31,6 +31,10 @@ Triggers: "briefing", "daily briefing", "morning briefing", "what's on today".
    - tasks left pending or incomplete
    - notes and reminders carried forward
    - context on what was happening last session
+   - `### Remember YYYY-MM-DD` sections whose date is **today** — scan the recent
+     prior logs too (reminders are written in the log of the day they were said,
+     which may be days back). Promote any match into the Today section of the
+     briefing. Conventions in `daily-log/CLAUDE.md`.
 
 3. **Order the priorities (graceful degradation)**
    This is the key sorting rule, and it adapts to whether the Advanced layer is in use:
@@ -74,3 +78,7 @@ Triggers: "briefing", "daily briefing", "morning briefing", "what's on today".
 - If `MEMORY.md` does not exist, say so and suggest running setup.
 - If there are no active items, produce a minimal briefing and note that memory is empty.
 - Keep it concise — this is a scan, not a report.
+
+## Self-improvement
+
+At the end of the run, check it against these friction triggers (keywords): **avoidable round-trip · improvisation · breakage · token waste · user correction** (full definitions in `skills/_improvements/capture.md`). If at least one fired, ask the user *"there was friction on X — should I log it?"*; on ok, append a 3-line entry to `skills/_improvements/friction-log.md` per `capture.md`. Clean run → say nothing. Never self-edit this skill; improvements go through `skill-improve`.

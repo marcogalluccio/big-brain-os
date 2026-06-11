@@ -56,7 +56,7 @@ domains/
 
 Big Brain ships with a light **Core** layer that works immediately: projects, strategic notes, references, and feedback, tracked in plain markdown.
 
-When you want more, an opt-in **Advanced** layer adds salience scoring, dated takes, and soft-delete, so the memory ages gracefully instead of growing forever. It is entirely optional. See [docs/ADVANCED.md](docs/ADVANCED.md).
+When you want more, an opt-in **Advanced** layer adds salience scoring (hand-set, or computed by a deterministic formula), dated takes, and soft-delete, so the memory ages gracefully instead of growing forever. It is entirely optional. See [docs/ADVANCED.md](docs/ADVANCED.md).
 
 ---
 
@@ -105,6 +105,11 @@ big-brain-os/
       SKILL.md               (read-only memory health audit)
     html-preview/
       SKILL.md               (renders markdown as styled HTML)
+    skill-improve/
+      SKILL.md               (turns logged friction into approvable diffs)
+    _improvements/
+      capture.md             (friction capture protocol)
+      friction-log.md        (append-only friction telemetry)
   memory/
     CLAUDE.md                (memory rules and conventions)
     MEMORY.md                (dashboard index)
@@ -115,6 +120,7 @@ big-brain-os/
     project_example.md       (example, deletable)
     archive/                 (closed memory files)
   daily-log/                 (daily session logs, one file per day)
+    CLAUDE.md                (log conventions: sessions, Remember dates)
   docs/
     ADVANCED.md              (opt-in advanced memory layer)
     TOOLBELT.md              (recommended plugins and skills)
@@ -136,8 +142,11 @@ Big Brain is the context layer. The way you actually do the work (planning, buil
 | `session-debrief` | Logs what happened, updates project files in memory | "debrief", "wrap up" |
 | `memory-checkup` | Read-only health audit of the memory layer | "memory checkup" |
 | `html-preview` | Renders any markdown file as styled HTML in your browser | "preview", "show me" |
+| `skill-improve` | Turns logged friction into approvable improvement diffs for any skill | "improve the X skill" |
 
 Each skill is a self-contained `SKILL.md`. Customize or replace any of them.
+
+**The skills improve themselves.** Every native skill carries a `## Self-improvement` footer: when a run hits friction (an avoidable question, a broken step, redone work), the agent offers to log it to `skills/_improvements/friction-log.md`. The `skill-improve` meta-skill then turns those entries into concrete diffs that you approve one by one. Skills never edit themselves silently.
 
 ---
 

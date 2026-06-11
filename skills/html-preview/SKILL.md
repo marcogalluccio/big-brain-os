@@ -96,3 +96,7 @@ Triggers: "preview", "show me", "render", "open in browser"
 - Use the cream theme (`#f5f0e8` background) — it is easier on the eyes than white.
 - If the content is very long (>10,000 characters), warn the user before rendering.
 - Clean up old temp files if you notice them (files older than today).
+
+## Self-improvement
+
+At the end of the run, check it against these friction triggers (keywords): **avoidable round-trip · improvisation · breakage · token waste · user correction** (full definitions in `skills/_improvements/capture.md`). If at least one fired, ask the user *"there was friction on X — should I log it?"*; on ok, append a 3-line entry to `skills/_improvements/friction-log.md` per `capture.md`. Clean run → say nothing. Never self-edit this skill; improvements go through `skill-improve`.

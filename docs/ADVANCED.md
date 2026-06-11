@@ -33,6 +33,33 @@ salience: 0.85
 
 **Absence:** if `salience` is not present, the skill treats it as neutral and falls back to status-based ordering. Nothing breaks.
 
+### Computed salience (optional formula)
+
+Hand-set salience has one weakness: the number ages. You set `0.85` during a hot week, the project cools down, and the score keeps shouting. If you prefer a score that cannot lie, compute it from observable signals instead of judgment — recomputable at zero cost over the whole corpus:
+
+```
+salience = clamp01( recency + deadline_proximity + status_weight + pinned − decay )
+```
+
+| Lever | Value |
+|-------|-------|
+| **recency** (from `last_touched`) | <7d +0.30 · <14d +0.20 · <30d +0.10 · beyond 0 |
+| **deadline_proximity** (from an optional `deadline: YYYY-MM-DD` field) | <7d +0.40 · <30d +0.25 · <90d +0.10 · none/far 0 |
+| **status_weight** (from `status`) | 🔴 0.30 · 🟡 0.25 · 🟢 0.20 · 🟠 0.15 · 🔵 0.05 · ❌ 0 |
+| **pinned** (manual) | `pinned: true` → +0.40, otherwise 0 |
+| **decay** (from `last_touched`) | −0.10 per 30 days since last touch |
+
+`clamp01` keeps the result in `[0.0, 1.0]`. `recency` and `decay` are the same temporal lever ("how long since you touched it") in opposite directions: time since last touch is the dominant factor.
+
+Conventions that keep it honest:
+
+- **One decimal only** (`0.9`, never `0.847`) — the score exists to *order*, not to measure. False precision is an anti-pattern.
+- **`pinned: true`** is the manual override (+0.40): use it when you want to force an item up regardless of signals.
+- **`evergreen: true`** on `reference_*` and `feedback_*` files exempts them from salience entirely — a `0.0` on a feedback file would read as "cold, retire it", which is a lie. Evergreen items are kept forever and never scored.
+- **When to recompute** (three moments, all gated): `session-debrief` recomputes the files touched in the session; a periodic `memory-checkup` sweep recomputes the whole corpus and *proposes* demotions for your approval; `daily-briefing` recomputes live, read-only, without writing anything.
+
+Manual and computed salience are two modes of the same field — pick one per workspace and stay consistent. Computed mode pairs naturally with the `daily-briefing` sorting described above; nothing else changes.
+
 ---
 
 ## Takes (confidence fence)

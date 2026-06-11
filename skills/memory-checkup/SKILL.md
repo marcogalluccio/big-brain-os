@@ -71,3 +71,7 @@ Produce one grouped report (render via `html-preview` if useful):
 - Exclude `*_template.md` files and the `archive/` folder from orphan-file checks.
 - Degrade gracefully: never flag missing Advanced fields (`salience`, `archived_at`, `## Takes`) as errors.
 - If `MEMORY.md` or `memory/` does not exist, report that and stop.
+
+## Self-improvement
+
+At the end of the run, check it against these friction triggers (keywords): **avoidable round-trip · improvisation · breakage · token waste · user correction** (full definitions in `skills/_improvements/capture.md`). If at least one fired, ask the user *"there was friction on X — should I log it?"*; on ok, append a 3-line entry to `skills/_improvements/friction-log.md` per `capture.md`. Clean run → say nothing. Never self-edit this skill; improvements go through `skill-improve`.

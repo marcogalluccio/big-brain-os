@@ -30,7 +30,7 @@ last_touched: YYYY-MM-DD
 ---
 ```
 
-The Advanced layer adds optional fields (`salience`, `archived_at`) and a `## Takes` section. See `../docs/ADVANCED.md`. Skills must work whether or not those are present.
+The Advanced layer adds optional fields (`salience`, `deadline`, `pinned`, `evergreen`, `archived_at`) and a `## Takes` section. See `../docs/ADVANCED.md`. Skills must work whether or not those are present.
 
 ## Rules
 

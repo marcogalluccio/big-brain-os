@@ -52,6 +52,8 @@ Triggers: "debrief", "wrap up", "close session", "log session".
 6. **Write today's daily-log entry**
    Append a session summary to `daily-log/YYYY-MM-DD.md` (verify the date first). Create the file if it does not exist. Never overwrite or delete existing entries — only append.
 
+   If something must happen on a specific **future** day, file it under a `### Remember YYYY-MM-DD` sub-heading (ISO date of the target day) in **today's** log — the `daily-briefing` skill resurfaces it on the target day. Do not bury forward-dated items inside generic Pending lines. Conventions in `daily-log/CLAUDE.md`.
+
    ```markdown
    ## Session — [HH:MM]
 
@@ -75,3 +77,7 @@ Triggers: "debrief", "wrap up", "close session", "log session".
 - **Soft-delete only:** closing = status ❌ + move to `memory/archive/`. Never hard-delete a memory file.
 - Convert relative dates to absolute before writing them.
 - Keep log entries factual and brief — a record, not a narrative.
+
+## Self-improvement
+
+At the end of the run, check it against these friction triggers (keywords): **avoidable round-trip · improvisation · breakage · token waste · user correction** (full definitions in `skills/_improvements/capture.md`). If at least one fired, ask the user *"there was friction on X — should I log it?"*; on ok, append a 3-line entry to `skills/_improvements/friction-log.md` per `capture.md`. Clean run → say nothing. Never self-edit this skill; improvements go through `skill-improve`.
