@@ -152,6 +152,12 @@ Each skill is a self-contained `SKILL.md`. Customize or replace any of them.
 
 ---
 
+## Running a team?
+
+[company-brain-os](https://github.com/marcogalluccio/company-brain-os) is the multi-operator sibling: an operator registry, per-operator daily logs, and a git flow built for simultaneous sessions.
+
+---
+
 ## License
 
 Released under the [MIT License](LICENSE). Fork it, adapt it, build on it.
